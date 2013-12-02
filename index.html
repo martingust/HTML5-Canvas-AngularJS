@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>HTML5 Canvas Apartment Finder</title>
+    <link href="styles/libs/bootstrap.min.css" rel="stylesheet" />
+    <link href="styles/apartment-finder.css" rel="stylesheet" />
+    <script src="js/apartment-finder.js"></script>
+    <script type="text/javascript">
+
+        window.onload = function () {
+            var aptFinder = new AptFinder();
+            
+            var apartments = [
+                { room: 3, area: 50, price: 150500, fee: 3500, status: 'available', rect: { width: 200, height: 50, xPos: 200, yPos: 10 } },
+                { room: 3, area: 50, price: 120250, fee: 3500, status: 'sold', rect: { width: 200, height: 50, xPos: 300, yPos: 70 } },
+                { room: 3, area: 50, price: 135500, fee: 3500, status: 'reserved', rect: { width: 200, height: 50, xPos: 300, yPos: 150 } }
+            ];
+            
+            aptFinder.render('canvas', 'tooltip',  apartments);
+        };
+
+    </script>
+</head>
+<body>
+    <canvas id="canvas" width="700" height="449"></canvas>
+    <table id="aptTable"></table>
+    <div id="xPos"></div>
+    <div id="yPos"></div>
+</body>
+</html>

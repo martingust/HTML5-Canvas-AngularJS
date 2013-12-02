@@ -1,0 +1,16 @@
+﻿#canvas {
+    width: 700px;
+    height: 449px;
+    background: url(../img/apt1.png) no-repeat;
+    border: 1px solid black;
+}
+
+#tooltip {
+    position: absolute;
+    border: 1px solid red;
+    width: 50px;
+    height: 100px;
+    display: block;
+    left: 0;
+    right: 0;
+}
