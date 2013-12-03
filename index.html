@@ -1,30 +1,55 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-    <title>HTML5 Canvas Apartment Finder</title>
-    <link href="styles/libs/bootstrap.min.css" rel="stylesheet" />
+    <title>HTML5 Canvas & AngularJS apartment finder</title>
+    <link href="styles/lib/bootstrap.min.css" rel="stylesheet" />
     <link href="styles/apartment-finder.css" rel="stylesheet" />
-    <script src="js/apartment-finder.js"></script>
-    <script type="text/javascript">
-
-        window.onload = function () {
-            var aptFinder = new AptFinder();
-            
-            var apartments = [
-                { room: 3, area: 50, price: 150500, fee: 3500, status: 'available', rect: { width: 200, height: 50, xPos: 200, yPos: 10 } },
-                { room: 3, area: 50, price: 120250, fee: 3500, status: 'sold', rect: { width: 200, height: 50, xPos: 300, yPos: 70 } },
-                { room: 3, area: 50, price: 135500, fee: 3500, status: 'reserved', rect: { width: 200, height: 50, xPos: 300, yPos: 150 } }
-            ];
-            
-            aptFinder.render('canvas', 'tooltip',  apartments);
-        };
-
-    </script>
 </head>
-<body>
-    <canvas id="canvas" width="700" height="449"></canvas>
-    <table id="aptTable"></table>
-    <div id="xPos"></div>
-    <div id="yPos"></div>
+    <body>
+    <div class="container" ng-app="aptFinderApp">
+        <div class="row" data-ng-controller="apartmentController">
+            <div class="col-md-12">
+
+                <h1>HTML5 Canvas & AngularJS apartment finder</h1>
+                <small>by Martin Gustafsson | @m_gusten | gusten86@gmail.com</small><br />
+
+                <canvas id="canvas" width="644" height="379"></canvas>
+                <img ng-src="{{apartmentPlan}}" id="planImg" class="pull-right" />
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Room</th>
+                            <th>Area</th>
+                            <th>Price</th>
+                            <th>Monthly fee</th>
+                            <th>PDF</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="{{a.id}}"
+                            ng-mouseover="highlightApt(a)"
+                            ng-mouseleave="highlightApt(a, true)"
+                            ng-repeat="a in apartments">
+                            <td>{{a.room}}</td>
+                            <td>{{a.area}} m&sup2;</td>
+                            <td>{{a.price}} kr</td>
+                            <td>{{a.fee}} kr</td>
+                            <td><a ng-href="{{a.pdf}}">Download PDF</a></td>
+                            <td><span ng-class="labelClass(a)">{{labelName(a)}}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="xPos"></div>
+                <div id="yPos"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/controllers/apartmentController.js"></script>
+    <script src="app/services/apartmentFactory.js"></script>
+
 </body>
 </html>
