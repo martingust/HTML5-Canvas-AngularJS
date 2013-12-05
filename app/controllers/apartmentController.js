@@ -29,5 +29,10 @@
             }
             apartmentFactory.highlightApartment(a, clearHighlight);
         };
+        $scope.mousemove = function (ev) {
+            var apartment = apartmentFactory.mouseoverApt(ev);
+            if (apartment)
+                $scope.highlightApt(apartment);
+        };
     }
 })();

@@ -21,6 +21,7 @@
             getData: getData,
             getLabelClass: getLabelClass,
             getStatusName: getStatusName,
+            mouseoverApt: mouseoverApt,
             renderCanvas: renderCanvas,
             highlightTableRow: highlightTableRow,
             renderApartment: renderApartment,
@@ -127,16 +128,47 @@
             ];
         }
 
+        function mouseoverApt(ev) {
+            var x;
+            var y;
+
+            if (ev.offsetX || ev.offsetY == 0) {
+                x = ev.offsetX;
+                y = ev.offsetY;
+            } else if (ev.layerX || ev.layerY == 0) {
+                x = ev.layerX - this.offsetLeft;
+                y = ev.layerY - this.offsetTop;
+            }
+
+            document.getElementById("xPos").innerHTML = 'X: ' + x;
+            document.getElementById("yPos").innerHTML = 'Y: ' + y;
+
+            for (var i = 0; i < apartments.length; i++) {
+
+                var a = apartments[i];
+                var r = a.rect;
+                var xMin = r.xPos;
+                var xMax = r.xPos + r.width;
+                var yMin = r.yPos;
+                var yMax = r.yPos + r.height;
+                if ((x >= xMin && x <= xMax) && (y >= yMin && y <= yMax)) {
+                    return a;
+                }
+            }
+            
+            return null;
+        };
+
         function mousemove(ev) {
             var x;
             var y;
 
-            if (ev.offsetX || ev.offsetX == 0) {
+            if (ev.offsetX || ev.offsetY == 0) {
                 x = ev.offsetX;
                 y = ev.offsetY;
-            } else if (ev.layerX || ev.layerX == 0) {
-                x = ev.layerX;
-                y = ev.layerY;
+            } else if (ev.layerX || ev.layerY == 0) {
+                x = ev.layerX - this.offsetLeft;
+                y = ev.layerY - this.offsetTop;
             }
 
             document.getElementById("xPos").innerHTML = 'X: ' + x;
@@ -154,6 +186,7 @@
                     renderApartment(a);
                     renderApartment(a, true);
                     highlightTableRow(a);
+                    
                 } else {
                     renderApartment(a);
                     highlightTableRow(a, true);

@@ -13,8 +13,8 @@
                 <h1>HTML5 Canvas & AngularJS apartment finder</h1>
                 <small>by Martin Gustafsson | @m_gusten | gusten86@gmail.com</small><br />
 
-                <canvas id="canvas" width="644" height="379"></canvas>
-                <img ng-src="{{apartmentPlan}}" id="planImg" class="pull-right" />
+                <canvas id="canvas" width="644" height="379" ng-mousemove="mousemove($event)"></canvas>
+                <img src="{{apartmentPlan}}" id="planImg" class="pull-right" />
                 <table class="table table-striped">
                     <thead>
                         <tr>
