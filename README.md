@@ -1,2 +1,3 @@
-canvas-apartment-finder
+HTML5 Canvas & AngularJS apartment finder
 =======================
+
