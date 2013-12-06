@@ -1,7 +1,14 @@
-﻿#canvas {
-    width: 644px;
-    height: 379px;
-    background: url(../img/apt1.png) no-repeat;
+﻿#birdeye {
+    width: 570px;
+    height: 354px;
+    background: url(../img/birdeye-south.png);
+ }
+
+#canvas {
+    width: 570px;
+    height: 344px;
+    margin-top: 45px;
+    background: url(../img/south-inner-k2.png) no-repeat;
 }
 
 #tooltip {

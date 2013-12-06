@@ -5,46 +5,60 @@
     <link href="styles/lib/bootstrap.min.css" rel="stylesheet" />
     <link href="styles/apartment-finder.css" rel="stylesheet" />
 </head>
-    <body>
-    <div class="container" ng-app="aptFinderApp">
-        <div class="row" data-ng-controller="apartmentController">
-            <div class="col-md-12">
-
-                <h1>HTML5 Canvas & AngularJS apartment finder</h1>
-                <small>by Martin Gustafsson | @m_gusten | gusten86@gmail.com</small><br />
-
-                <canvas id="canvas" width="644" height="379" ng-mousemove="mousemove($event)"></canvas>
-                <img src="{{apartmentPlan}}" id="planImg" class="pull-right" />
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Room</th>
-                            <th>Area</th>
-                            <th>Price</th>
-                            <th>Monthly fee</th>
-                            <th>PDF</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr id="{{a.id}}"
-                            ng-mouseover="highlightApt(a)"
-                            ng-mouseleave="highlightApt(a, true)"
-                            ng-repeat="a in apartments">
-                            <td>{{a.room}}</td>
-                            <td>{{a.area}} m&sup2;</td>
-                            <td>{{a.price}} kr</td>
-                            <td>{{a.fee}} kr</td>
-                            <td><a ng-href="{{a.pdf}}">Download PDF</a></td>
-                            <td><span ng-class="labelClass(a)">{{labelName(a)}}</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div id="xPos"></div>
-                <div id="yPos"></div>
+<body>
+    <div ng-app="aptFinderApp">
+        <div class="container" data-ng-controller="apartmentController">
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="hide">HTML5 Canvas & AngularJS apartment finder</h1>
+                    <h1>Kvillebäcksparken</h1>
+                    <small class="hide">by Martin Gustafsson | @m_gusten | gusten86@gmail.com</small><br />
+                </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default">Norr</button>
+                        <button type="button" class="btn btn-default active">Söder</button>
+                    </div>
+                    <canvas id="birdeye" width="570" height="354" ng-mousemove="mousemoveBirdeye($event)" ng-click="clickBirdeye($event)"></canvas>
+                </div>
+                <div class="col-md-6">
+                    <canvas id="canvas" width="570" height="344" ng-mousemove="mousemoveApt($event)"></canvas>
+                </div>
+            </div>
+            <div id="xPos" class="hide"></div>
+            <div id="yPos" class="hide"></div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Rum</th>
+                        <th>Yta</th>
+                        <th>Pris</th>
+                        <th>Avgift</th>
+                        <th>Status</th>
+                        <th>PDF</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="{{a.id}}"
+                        ng-mouseover="highlightApt(a)"
+                        ng-mouseleave="highlightApt(a, true)"
+                        ng-repeat="a in apartments">
+                        <td>{{a.room}}</td>
+                        <td>{{a.area}} m&sup2;</td>
+                        <td>{{a.price}} kr</td>
+                        <td>{{a.fee}} kr</td>
+                        <td><span ng-class="labelClass(a)">{{labelName(a)}}</span></td>
+                        <td><a ng-href="{{a.pdf}}">Visa PDF</a></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
+
 
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
     <script src="app/app.js"></script>

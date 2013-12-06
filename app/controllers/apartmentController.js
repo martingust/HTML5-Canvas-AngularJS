@@ -9,6 +9,7 @@
     function apartmentController($scope, apartmentFactory) {
 
         apartmentFactory.renderCanvas('canvas');
+        apartmentFactory.renderBirdeyeCanvas('birdeye');
         $scope.apartments = apartmentFactory.getData();
         $scope.apartmentPlan = 'img/plan-no-image.png';
         $scope.setSort = function(prop) {
@@ -29,10 +30,14 @@
             }
             apartmentFactory.highlightApartment(a, clearHighlight);
         };
-        $scope.mousemove = function (ev) {
-            var apartment = apartmentFactory.mouseoverApt(ev);
-            if (apartment)
-                $scope.highlightApt(apartment);
+        $scope.mousemoveApt = function (ev) {
+            apartmentFactory.mouseoverApt(ev);
+        };
+        $scope.mousemoveBirdeye = function (ev) {
+            apartmentFactory.mouseoverBirdeye(ev);
+        };
+        $scope.clickBirdeye = function(ev) {
+            apartmentFactory.clickBirdeye(ev);
         };
     }
 })();
