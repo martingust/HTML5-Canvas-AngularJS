@@ -11,26 +11,25 @@
             
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="hide">HTML5 Canvas & AngularJS apartment finder</h1>
-                    <h1>Kvillebäcksparken</h1>
-                    <small class="hide">by Martin Gustafsson | @m_gusten | gusten86@gmail.com</small><br />
+                    <h1>HTML5 Canvas & AngularJS apartment finder</h1>
+                    <small>by Martin Gustafsson | @m_gusten | gusten86@gmail.com</small><br />
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6 text-center">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-default">Norr</button>
-                        <button type="button" class="btn btn-default active">Söder</button>
+                        <button type="button" class="btn btn-default" ng-class="northToggle" ng-click="viewToggle('north')">Norr</button>
+                        <button type="button" class="btn btn-default" ng-class="southToggle" ng-click="viewToggle('south')">Söder</button>
                     </div>
-                    <canvas id="birdeye" width="570" height="354" ng-mousemove="mousemoveBirdeye($event)" ng-click="clickBirdeye($event)"></canvas>
+                    <canvas id="birdeye" width="570" height="354" ng-class="birdeyeDirection" ng-mousemove="mousemoveBirdeye($event)" ng-click="clickBirdeye($event)"></canvas>
                 </div>
                 <div class="col-md-6">
-                    <canvas id="canvas" width="570" height="344" ng-mousemove="mousemoveApt($event)"></canvas>
+                    <canvas id="canvas" width="570" height="344" ng-mousemove="mousemoveApt($event)" ng-class="sectionId"></canvas>
                 </div>
             </div>
-            <div id="xPos" class="hide"></div>
-            <div id="yPos" class="hide"></div>
+            <div id="xPos"></div>
+            <div id="yPos"></div>
             <table class="table table-striped">
                 <thead>
                     <tr>

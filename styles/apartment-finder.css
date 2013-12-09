@@ -1,14 +1,28 @@
 ﻿#birdeye {
     width: 570px;
     height: 354px;
-    background: url(../img/birdeye-south.png);
  }
+
+#birdeye.south {
+    background: url(../img/birdeye-south.png);
+}
+
+#birdeye.north {
+    background: url(../img/birdeye-north.png);
+}
 
 #canvas {
     width: 570px;
     height: 344px;
     margin-top: 45px;
+}
+
+#canvas.south-inner-k2 {
     background: url(../img/south-inner-k2.png) no-repeat;
+}
+
+#canvas.south-outer-k2 {
+    background: url(../img/south-outer-k2.png) no-repeat;
 }
 
 #tooltip {
