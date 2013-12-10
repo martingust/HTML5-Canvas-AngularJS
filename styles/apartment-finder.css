@@ -25,6 +25,14 @@
     background: url(../img/south-outer-k2.png) no-repeat;
 }
 
+#canvas.north-inner-k2 {
+    background: url(../img/north-inner-k2.png) no-repeat;
+}
+
+#canvas.north-outer-k2 {
+    background: url(../img/north-outer-k2.png) no-repeat;
+}
+
 #tooltip {
     position: absolute;
     width: 50px;
@@ -32,4 +40,9 @@
     display: block;
     left: 0;
     right: 0;
+}
+
+/* Twitter Bootstrap overrides */
+.table>tbody>tr>td {
+    padding: 2px;
 }

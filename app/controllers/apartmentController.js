@@ -8,29 +8,20 @@
 
     function apartmentController($scope, apartmentFactory) {
 
+        // init
         apartmentFactory.renderCanvas('canvas');
         apartmentFactory.renderBirdeyeCanvas('birdeye');
-        $scope.apartments = apartmentFactory.activeSection.apartmentData;
-        $scope.sectionId = $scope.apartments.Id;
-        $scope.birdeyeDirection = 'south';
-        $scope.northToggle = '';
-        $scope.southToggle = 'active';
-        $scope.viewToggle = function (btn) {
-            $scope.birdeyeDirection = btn;
-            if (btn === 'north') {
-                $scope.northToggle = 'active';
-                $scope.southToggle = '';
-            }else if (btn === 'south') {
-                $scope.northToggle = '';
-                $scope.southToggle = 'active';
-            }
-            
+        
+        // scope
+        $scope.section = apartmentFactory.setDirection('north');
+        $scope.setDirection = function (btn) {
+            $scope.section = apartmentFactory.setDirection(btn);
         };
         $scope.labelClass = function (a) {
-            return apartmentFactory.getLabelClass(a);
+            return apartmentFactory.getLabelClass(a); // TODO: move to directive
         };
         $scope.labelName = function (a) {
-            return apartmentFactory.getStatusName(a);
+            return apartmentFactory.getStatusName(a); // TODO: move to directive
         };
         $scope.mousemoveApt = function (ev) {
             apartmentFactory.mouseoverApt(ev);
@@ -39,9 +30,7 @@
             apartmentFactory.mouseoverBirdeye(ev);
         };
         $scope.clickBirdeye = function (ev) {
-            var section = apartmentFactory.clickBirdeye(ev);
-            $scope.sectionId = section.id;
-            $scope.apartments = section.apartmentData;
+            $scope.section = apartmentFactory.clickBirdeye(ev);
         };
     }
 })();
