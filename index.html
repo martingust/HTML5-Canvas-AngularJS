@@ -1,21 +1,20 @@
 ﻿<!DOCTYPE html>
-<html>
+<html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="aptFinderApp">
 <head>
-    <title>HTML5 Canvas & AngularJS apartment finder</title>
+    <title>Kvillebäcksparken</title>
     <link href="styles/lib/bootstrap.min.css" rel="stylesheet" />
     <link href="styles/apartment-finder.css" rel="stylesheet" />
 </head>
 <body>
-    <div ng-app="aptFinderApp">
+    <div>
         <div class="container" data-ng-controller="apartmentController">
-            
+
             <div class="row">
                 <div class="col-md-12">
-                    <h1>HTML5 Canvas & AngularJS apartment finder</h1>
-                    <small>by Martin Gustafsson | @m_gusten | gusten86@gmail.com</small><br />
+                    <h1>Kvillebäcksparken</h1>
                 </div>
             </div>
- 
+
             <div class="row">
                 <div class="col-md-6">
                     <table class="table table-striped">
@@ -52,14 +51,14 @@
                     <canvas id="birdeye" width="570" height="354" ng-class="section.direction" ng-mousemove="mousemoveBirdeye($event)" ng-click="clickBirdeye($event)"></canvas>
                     <canvas id="canvas" width="570" height="344" ng-mousemove="mousemoveApt($event)" ng-class="section.id"></canvas>
                 </div>
-                
+
             </div>
             <div id="xPos"></div>
             <div id="yPos"></div>
-            
+
         </div>
     </div>
-    
+
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
     <script src="app/app.js"></script>
     <script src="app/controllers/apartmentController.js"></script>

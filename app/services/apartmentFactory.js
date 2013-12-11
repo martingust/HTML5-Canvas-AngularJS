@@ -28,6 +28,7 @@
             mouseoverBirdeye: mouseoverBirdeye,
             renderCanvas: renderCanvas,
             renderBirdeyeCanvas: renderBirdeyeCanvas,
+            highlightApartment: highlightApartment,
             highlightTableRow: highlightTableRow
         };
 
@@ -57,23 +58,21 @@
         }
 
         function highlightTableRow(apartment, clearHighlight) {
-
             var tr = document.getElementById(apartment.id);
             if (clearHighlight) {
                 tr.className = '';
+                //highlightApartment(apartment, true);
             } else {
                 tr.className = getAptRowClassName(apartment);
+                //highlightApartment(apartment);
             }
+            
         };
 
         function highlightApartment(a, clear) {
-            renderApartment(a);
-            highlightTableRow(a, true);
-            if (!clear) {
-                highlightTableRow(a);
-                renderApartment(a, true);
-            }
-        }
+            clearApartments();
+            renderApartment(a, !clear);
+        };
 
         function renderApartment(apartment, hightlight) {;
             var r = apartment.rect;
@@ -153,7 +152,7 @@
                     { id: 'd1204', room: 3, area: 56, price: 150500, fee: 6500, pdf: '#', status: 'sold', rect: { width: 82, height: 35, xPos: 236, yPos: 225 } },
                     { id: 'd1104', room: 4, area: 98, price: 170500, fee: 4500, pdf: '#', status: 'sold', rect: { width: 82, height: 35, xPos: 236, yPos: 260 } },
                     { id: 'd1001', room: 4, area: 67, price: 190500, fee: 5400, pdf: '#', status: 'available', rect: { width: 82, height: 47, xPos: 236, yPos: 295 } },
-                    
+
                     { id: 'c1701', room: 3, area: 87, price: 180500, fee: 3400, pdf: '#', status: 'reserved', rect: { width: 116, height: 37, xPos: 315, yPos: 46 } },
                     { id: 'c1601', room: 3, area: 67, price: 140500, fee: 3380, pdf: '#', status: 'reserved', rect: { width: 116, height: 35, xPos: 315, yPos: 83 } },
                     { id: 'c1501', room: 3, area: 56, price: 150500, fee: 6500, pdf: '#', status: 'sold', rect: { width: 116, height: 35, xPos: 315, yPos: 118 } },
@@ -162,7 +161,7 @@
                     { id: 'c1201', room: 3, area: 87, price: 180500, fee: 3400, pdf: '#', status: 'reserved', rect: { width: 116, height: 35, xPos: 315, yPos: 224 } },
                     { id: 'c1101', room: 3, area: 67, price: 140500, fee: 3380, pdf: '#', status: 'reserved', rect: { width: 116, height: 35, xPos: 315, yPos: 259 } },
                     { id: 'c1001', room: 3, area: 56, price: 150500, fee: 6500, pdf: '#', status: 'sold', rect: { width: 103, height: 46, xPos: 315, yPos: 295 } },
-                
+
                     { id: 'c1703', room: 3, area: 87, price: 180500, fee: 3400, pdf: '#', status: 'reserved', rect: { width: 116, height: 37, xPos: 448, yPos: 46 } },
                     { id: 'c1603', room: 3, area: 67, price: 140500, fee: 3380, pdf: '#', status: 'reserved', rect: { width: 116, height: 35, xPos: 448, yPos: 83 } },
                     { id: 'c1503', room: 3, area: 56, price: 150500, fee: 6500, pdf: '#', status: 'sold', rect: { width: 116, height: 35, xPos: 448, yPos: 118 } },
@@ -199,7 +198,7 @@
                     { id: 'b1206', room: 3, area: 87, price: 180500, fee: 3400, pdf: '#', status: 'reserved', rect: { width: 63, height: 31, xPos: 34, yPos: 245 } },
                     { id: 'b1106', room: 3, area: 67, price: 140500, fee: 3380, pdf: '#', status: 'reserved', rect: { width: 63, height: 31, xPos: 34, yPos: 276 } },
                     { id: 'b1006', room: 3, area: 56, price: 150500, fee: 6500, pdf: '#', status: 'sold', rect: { width: 63, height: 31, xPos: 34, yPos: 307 } },
-                    
+
                     { id: 'b1901', room: 4, area: 75, price: 160500, fee: 3400, pdf: '#', status: 'available', rect: { width: 81, height: 34, xPos: 127, yPos: 22 } },
                     { id: 'b1803', room: 3, area: 45, price: 170500, fee: 4500, pdf: '#', status: 'sold', rect: { width: 81, height: 31, xPos: 127, yPos: 56 } },
                     { id: 'b1705', room: 3, area: 87, price: 180500, fee: 3400, pdf: '#', status: 'reserved', rect: { width: 81, height: 31, xPos: 127, yPos: 87 } },
@@ -210,13 +209,13 @@
                     { id: 'b1205', room: 3, area: 87, price: 180500, fee: 3400, pdf: '#', status: 'reserved', rect: { width: 81, height: 31, xPos: 127, yPos: 245 } },
                     { id: 'b1105', room: 3, area: 67, price: 140500, fee: 3380, pdf: '#', status: 'reserved', rect: { width: 81, height: 31, xPos: 127, yPos: 276 } },
                     { id: 'b1005', room: 3, area: 56, price: 150500, fee: 6500, pdf: '#', status: 'sold', rect: { width: 81, height: 31, xPos: 127, yPos: 307 } },
-                
+
                     { id: 'a1402', room: 4, area: 98, price: 170500, fee: 4500, pdf: '#', status: 'sold', rect: { width: 97, height: 33, xPos: 282, yPos: 176 } },
                     { id: 'a1302', room: 4, area: 67, price: 190500, fee: 5400, pdf: '#', status: 'available', rect: { width: 97, height: 31, xPos: 282, yPos: 209 } },
                     { id: 'a1202', room: 3, area: 87, price: 180500, fee: 3400, pdf: '#', status: 'reserved', rect: { width: 97, height: 31, xPos: 282, yPos: 240 } },
                     { id: 'a1102', room: 3, area: 67, price: 140500, fee: 3380, pdf: '#', status: 'reserved', rect: { width: 97, height: 31, xPos: 282, yPos: 271 } },
                     { id: 'a1003', room: 3, area: 56, price: 150500, fee: 6500, pdf: '#', status: 'sold', rect: { width: 57, height: 40, xPos: 324, yPos: 302 } },
-                    
+
                     { id: 'a1401', room: 4, area: 98, price: 170500, fee: 4500, pdf: '#', status: 'sold', rect: { width: 85, height: 33, xPos: 408, yPos: 176 } },
                     { id: 'a1301', room: 4, area: 67, price: 190500, fee: 5400, pdf: '#', status: 'available', rect: { width: 85, height: 31, xPos: 408, yPos: 209 } },
                     { id: 'a1201', room: 3, area: 87, price: 180500, fee: 3400, pdf: '#', status: 'reserved', rect: { width: 85, height: 31, xPos: 408, yPos: 240 } },
@@ -236,13 +235,53 @@
                         { x: 302, y: 56 },
                         { x: 302, y: 70 },
                         { x: 406, y: 116 },
-                        { x: 387, y: 206},
+                        { x: 387, y: 206 },
                         { x: 245, y: 130 },
                         { x: 243, y: 64 },
                         { x: 231, y: 58 }
                     ]
                 },
-                apartmentData: []
+                apartmentData: [
+                    { id: 'c1702', room: 3, area: 87, price: 180500, fee: 3400, pdf: '#', status: 'reserved', rect: { width: 145, height: 35, xPos: 3, yPos: 42 } },
+                    { id: 'c1602', room: 3, area: 67, price: 140500, fee: 3380, pdf: '#', status: 'reserved', rect: { width: 145, height: 35, xPos: 3, yPos: 77 } },
+                    { id: 'c1502', room: 3, area: 56, price: 150500, fee: 6500, pdf: '#', status: 'sold', rect: { width: 145, height: 36, xPos: 3, yPos: 112 } },
+                    { id: 'c1402', room: 4, area: 98, price: 170500, fee: 4500, pdf: '#', status: 'sold', rect: { width: 145, height: 36, xPos: 3, yPos: 148 } },
+                    { id: 'c1302', room: 4, area: 67, price: 190500, fee: 5400, pdf: '#', status: 'available', rect: { width: 145, height: 36, xPos: 3, yPos: 184 } },
+                    { id: 'c1202', room: 3, area: 87, price: 180500, fee: 3400, pdf: '#', status: 'reserved', rect: { width: 145, height: 36, xPos: 3, yPos: 220 } },
+                    { id: 'c1102', room: 3, area: 67, price: 140500, fee: 3380, pdf: '#', status: 'reserved', rect: { width: 145, height: 36, xPos: 3, yPos: 256 } },
+                    { id: 'c1002', room: 3, area: 56, price: 150500, fee: 6500, pdf: '#', status: 'sold', rect: { width: 97, height: 36, xPos: 3, yPos: 292 } },
+
+                    { id: 'c1601', room: 3, area: 67, price: 140500, fee: 3380, pdf: '#', status: 'reserved', rect: { width: 87, height: 35, xPos: 151, yPos: 77 } },
+                    { id: 'c1501', room: 3, area: 56, price: 150500, fee: 6500, pdf: '#', status: 'sold', rect: { width: 87, height: 36, xPos: 151, yPos: 112 } },
+                    { id: 'c1401', room: 4, area: 98, price: 170500, fee: 4500, pdf: '#', status: 'sold', rect: { width: 87, height: 36, xPos: 151, yPos: 149 } },
+                    { id: 'c1301', room: 4, area: 67, price: 190500, fee: 5400, pdf: '#', status: 'available', rect: { width: 87, height: 36, xPos: 151, yPos: 185 } },
+                    { id: 'c1201', room: 3, area: 87, price: 180500, fee: 3400, pdf: '#', status: 'reserved', rect: { width: 87, height: 36, xPos: 151, yPos: 220 } },
+                    { id: 'c1101', room: 3, area: 67, price: 140500, fee: 3380, pdf: '#', status: 'reserved', rect: { width: 87, height: 36, xPos: 151, yPos: 256 } },
+                    { id: 'c1002', room: 3, area: 56, price: 150500, fee: 6500, pdf: '#', status: 'sold', rect: { width: 87, height: 36, xPos: 151, yPos: 292 } },
+                    
+                    { id: 'd1601', room: 3, area: 67, price: 140500, fee: 3380, pdf: '#', status: 'reserved', rect: { width: 67, height: 35, xPos: 256, yPos: 77 } },
+                    { id: 'd1801', room: 3, area: 56, price: 150500, fee: 6500, pdf: '#', status: 'sold', rect: { width: 67, height: 36, xPos: 256, yPos: 112 } },
+                    { id: 'd1404', room: 4, area: 98, price: 170500, fee: 4500, pdf: '#', status: 'sold', rect: { width: 67, height: 36, xPos: 256, yPos: 149 } },
+                    { id: 'd1304', room: 4, area: 67, price: 190500, fee: 5400, pdf: '#', status: 'available', rect: { width: 67, height: 36, xPos: 256, yPos: 185 } },
+                    { id: 'd1204', room: 3, area: 87, price: 180500, fee: 3400, pdf: '#', status: 'reserved', rect: { width: 67, height: 36, xPos: 256, yPos: 220 } },
+                    { id: 'd1104', room: 3, area: 67, price: 140500, fee: 3380, pdf: '#', status: 'reserved', rect: { width: 67, height: 36, xPos: 256, yPos: 256 } },
+                    { id: 'd1001', room: 3, area: 56, price: 150500, fee: 6500, pdf: '#', status: 'sold', rect: { width: 67, height: 36, xPos: 256, yPos: 292 } },
+                    
+                    { id: 'd1402', room: 3, area: 56, price: 150500, fee: 6500, pdf: '#', status: 'sold', rect: { width: 110, height: 36, xPos: 323, yPos: 112 } },
+                    { id: 'd1304', room: 4, area: 98, price: 170500, fee: 4500, pdf: '#', status: 'sold', rect: { width: 110, height: 36, xPos: 323, yPos: 149 } },
+                    { id: 'd1204', room: 4, area: 67, price: 190500, fee: 5400, pdf: '#', status: 'available', rect: { width: 110, height: 36, xPos: 323, yPos: 185 } },
+                    { id: 'd1104', room: 3, area: 87, price: 180500, fee: 3400, pdf: '#', status: 'reserved', rect: { width: 110, height: 36, xPos: 323, yPos: 220 } },
+                    { id: 'd1004', room: 3, area: 67, price: 140500, fee: 3380, pdf: '#', status: 'reserved', rect: { width: 110, height: 36, xPos: 323, yPos: 256 } },
+                    { id: 'd1004', room: 3, area: 67, price: 140500, fee: 3380, pdf: '#', status: 'reserved', rect: { width: 110, height: 36, xPos: 323, yPos: 292 } },
+                
+                    { id: 'd1602', room: 3, area: 67, price: 140500, fee: 3380, pdf: '#', status: 'reserved', rect: { width: 124, height: 35, xPos: 441, yPos: 77 } },
+                    { id: 'd1502', room: 3, area: 56, price: 150500, fee: 6500, pdf: '#', status: 'sold', rect: { width: 124, height: 36, xPos: 441, yPos: 112 } },
+                    { id: 'd1402', room: 4, area: 98, price: 170500, fee: 4500, pdf: '#', status: 'sold', rect: { width: 124, height: 36, xPos: 441, yPos: 149 } },
+                    { id: 'd1302', room: 4, area: 67, price: 190500, fee: 5400, pdf: '#', status: 'available', rect: { width: 124, height: 36, xPos: 441, yPos: 185 } },
+                    { id: 'd1202', room: 3, area: 87, price: 180500, fee: 3400, pdf: '#', status: 'reserved', rect: { width: 124, height: 36, xPos: 441, yPos: 220 } },
+                    { id: 'd1102', room: 3, area: 67, price: 140500, fee: 3380, pdf: '#', status: 'reserved', rect: { width: 124, height: 36, xPos: 441, yPos: 256 } },
+                    { id: 'd1002', room: 3, area: 56, price: 150500, fee: 6500, pdf: '#', status: 'sold', rect: { width: 113, height: 36, xPos: 452, yPos: 292 } }
+                ]
             }
             ];
         }
@@ -284,12 +323,12 @@
 
         function isInsideSection(ev) {
             var context = birdeyeCtx;
-            var x = getMouseXPos(ev);
-            var y = getMouseYPos(ev);
+            var x = getMouseXPos(ev, 'birdeye');
+            var y = getMouseYPos(ev, 'birdeye');
 
             for (var i = 0; i < sections.length; i++) {
                 var s = sections[i];
-                if (s.direction !== currentActiveSection.direction) {continue; }
+                if (s.direction !== currentActiveSection.direction) { continue; }
                 var vertx = [];
                 var verty = [];
 
@@ -311,6 +350,8 @@
                     return s;
                 }
             }
+            
+
             return false;
         }
 
@@ -365,8 +406,8 @@
         }
 
         function mouseoverApt(ev) {
-            var x = getMouseXPos(ev);
-            var y = getMouseYPos(ev);
+            var x = getMouseXPos(ev, 'canvas');
+            var y = getMouseYPos(ev, 'canvas');
             var apartments = currentActiveSection.apartmentData;
 
             if (apartments) {
@@ -392,23 +433,25 @@
             return null;
         };
 
-        function getMouseXPos(ev) {
+        function getMouseXPos(ev, canvasId) {
             var x;
-            if (ev.offsetX || ev.offsetX == 0) {
+            if (ev.offsetX) {
                 x = ev.offsetX;
-            } else if (ev.layerX || ev.layerX == 0) {
-                x = ev.layerX - this.offsetLeft;
+            } else if (ev.layerX) {
+                var canvas = document.getElementById(canvasId);
+                x = ev.layerX - canvas.offsetLeft;
             }
             document.getElementById("xPos").innerHTML = 'X: ' + x;
             return x;
         };
 
-        function getMouseYPos(ev) {
+        function getMouseYPos(ev, canvasId) {
             var y;
-            if (ev.offsetY || ev.offsetY == 0) {
+            if (ev.offsetY) {
                 y = ev.offsetY;
-            } else if (ev.layerY || ev.layerY == 0) {
-                y = ev.layerX - this.offsetLeft;
+            } else if (ev.layerY) {
+                var canvas = document.getElementById(canvasId);
+                y = ev.layerY - canvas.offsetTop;
             }
             document.getElementById("yPos").innerHTML = 'Y: ' + y;
             return y;
