@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="aptFinderApp">
+<html ng-app="aptFinderApp">
 <head>
     <title>Kvillebäcksparken</title>
     <link href="styles/lib/bootstrap.min.css" rel="stylesheet" />
@@ -8,13 +8,11 @@
 <body>
     <div>
         <div class="container" data-ng-controller="apartmentController">
-
             <div class="row">
                 <div class="col-md-12">
                     <h1>Kvillebäcksparken</h1>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-md-6">
                     <table class="table table-striped">
@@ -37,7 +35,7 @@
                                 <td>{{a.area}} m&sup2;</td>
                                 <td>{{a.price}} kr</td>
                                 <td>{{a.fee}} kr</td>
-                                <td><span ng-class="labelClass(a)">{{labelName(a)}}</span></td>
+                                <td><div data-mg-status-label status="{{a.status}}"></div></td>
                                 <td><a ng-href="{{a.pdf}}">Visa PDF</a></td>
                             </tr>
                         </tbody>
@@ -51,18 +49,27 @@
                     <canvas id="birdeye" width="570" height="354" ng-class="section.direction" ng-mousemove="mousemoveBirdeye($event)" ng-click="clickBirdeye($event)"></canvas>
                     <canvas id="canvas" width="570" height="344" ng-mousemove="mousemoveApt($event)" ng-class="section.id"></canvas>
                 </div>
-
             </div>
             <div id="xPos"></div>
             <div id="yPos"></div>
-
         </div>
     </div>
-
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
+    
+    <!-- Vendor Scripts -->
+    <script src="js/angular.min.js"></script>
+    
+    <!-- Bootstrapping -->
     <script src="app/app.js"></script>
+    
+    <!-- app Controllers -->
     <script src="app/controllers/apartmentController.js"></script>
+    
+    <!-- app Services -->
     <script src="app/services/apartmentFactory.js"></script>
+    <script src="app/services/datacontext.js"></script>
+    
+    <!-- app Directives -->
+    <script src="app/directives/mgStatusLabel.js"></script>
 
 </body>
 </html>
